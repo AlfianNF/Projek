@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('saldos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->decimal('saldo', 10, 2); // Adjust the data type and precision as needed
+            $table->integer('saldo'); // Adjust the data type and precision as needed
             $table->timestamps();
 
             // Define foreign key constraint

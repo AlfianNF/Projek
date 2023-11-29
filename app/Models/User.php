@@ -43,8 +43,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function saldo()
+    public function saldos()
     {
-        return $this->hasOne(Saldo::class);
+        return $this->hasMany(Saldos::class);
     }
 }
