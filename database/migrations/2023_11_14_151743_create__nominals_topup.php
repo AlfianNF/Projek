@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('game_id');
             $table->string('nama_nominal');
-            $table->decimal('nominal', 10, 2);
+            $table->integer('nominal');
             $table->timestamps();
         });
     }

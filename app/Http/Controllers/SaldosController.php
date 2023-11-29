@@ -32,10 +32,8 @@ class SaldosController extends Controller
 
     public function topup(Request $request){
         $rules = [
-            'username' => 'required|max:50',
             'email' => 'required|email',
             'saldo' => 'required',
-            'payment' => 'required',
         ];
     
         $validatedData = $request->validate($rules);
@@ -52,6 +50,6 @@ class SaldosController extends Controller
     
         $user->Saldos()->save($saldo);
     
-        return redirect('/topup_saldo')->with('success', 'Saldo Berhasil Ditambahkan');
+        return redirect('topup_saldo')->with('success', 'Saldo Berhasil Ditambahkan');
     }
 }
