@@ -4,24 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Saldos;
+use App\Models\Invoices;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class SaldosController extends Controller
 {
-    public function saldo(){
-       $user = Auth::user();
+    public function saldo()
+    {
+        $user = Auth::user();
 
         if (!$user) {
             return redirect()->route('login'); 
         }
 
-        $saldos = $user->saldos;
+        // Retrieve the totalSaldo directly from the users table
+        $totalSaldo = $user->saldo;
 
-        $totalSaldo = $user->saldos->sum('saldo');
+        // Retrieve the Invoices
+        $invoices = Invoices::where('user_id', $user->id)->get();
 
-        return view('dashboard.saldo',compact('saldos', 'totalSaldo'));
+        return view('dashboard.saldo', compact('totalSaldo', 'invoices'));
     }
 
     public function topup_saldo(){
@@ -30,26 +34,24 @@ class SaldosController extends Controller
     }
     
 
-    public function topup(Request $request){
+    public function topup(Request $request)
+    {
         $rules = [
             'email' => 'required|email',
-            'saldo' => 'required',
+            'saldo' => 'required|numeric',
         ];
-    
+
         $validatedData = $request->validate($rules);
-    
+
         $user = User::where('email', $validatedData['email'])->first();
-    
+
         if (!$user) {
             return redirect('topup_saldo')->with('error', 'User Tidak Ditemukan');
         }
-    
-        $saldo = new Saldos([
-            'saldo' => $validatedData['saldo'],
-        ]);
-    
-        $user->Saldos()->save($saldo);
-    
+
+        // Increment the existing saldo in the users table
+        $user->update(['saldo' => $user->saldo + $validatedData['saldo']]);
+
         return redirect('topup_saldo')->with('success', 'Saldo Berhasil Ditambahkan');
     }
 }

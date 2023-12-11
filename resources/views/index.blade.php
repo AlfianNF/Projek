@@ -30,7 +30,7 @@
         </div>
         <div class="carousel-item">
           <a href="/gi">
-            <img src="img/gi-carousel.png" class="d-block w-100 float-end img-fluid rounded" alt="..." style="width: 1000px; height:400px; overview:hidden;">
+            <img src="img/genshin4.3.jpg" class="d-block w-100 float-end img-fluid rounded" alt="..." style="width: 1000px; height:400px; overview:hidden;">
           </a>
         </div>
         <div class="carousel-item">

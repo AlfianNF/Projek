@@ -25,14 +25,14 @@
                     <div class="input-group mb-3">
                       <label class="input-group-text bg-success text-white" for="inputGroupSelect01">Items</label>
                       <select class="form-select" id="inputGroupSelect01" name="nama_nominal" required>
-                        <option selected>Choose Nominal</option>
-                        @foreach ($topup as $data)
-                          @if ($data->game_id == 1)
-                              <option value="{{ $data->nama_nominal}} {{ $data->nominal}}">{{ $data->nama_nominal }} - {{ $data->nominal}}</option>
-                          @endif
-                        @endforeach
+                          <option selected>Choose Nominal</option>
+                          @foreach ($topup as $data)
+                              @if ($data->game_id == 1)
+                                  <option value="{{ $data->nama_nominal }}|{{ $data->nominal }}">{{ $data->nama_nominal }} - {{ $data->nominal }}</option>
+                              @endif
+                          @endforeach
                       </select>
-                    </div>
+                  </div>                  
                       <a href="/" class="btn btn-primary mt-3">Back</a>
                       <button type="button" class="btn btn-primary mt-3" onclick="validateAndSubmit()">Submit</button>
                 </form>

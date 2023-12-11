@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GamesController;
-use App\Http\Controllers\SaldosController;
 use App\Http\Controllers\TopUpController;
+use App\Http\Controllers\SaldosController;
 use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,8 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/dashboard', [ProfileController::class,'image'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/saldo', [SaldosController::class,'saldo'])
     ->middleware(['auth', 'verified'])->name('saldo');
@@ -34,12 +33,36 @@ Route::get('/logout', function () {
 })->name('logout');
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware(['auth', 'verified', 'admin'])
+    ->name('admin');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/topup_saldo',[SaldosController::class, 'topup']);
     
+    Route::get('/gi',[TopUpController::class,'gi_topup']);
+    
+    Route::get('/hsr',[TopUpController::class,'hsr_topup']);
+    
+    Route::get('/ml',[TopUpController::class,'ml_topup']);
+    
+    Route::get('/coc',[TopUpController::class,'coc_topup']);
+    
+    Route::post('/store',[TopUpController::class,'store']);
+
+    Route::get('/admin/delete/{id}',[AdminController::class, 'delete']);
+    Route::get('/admin/update/{id}', [AdminController::class, 'update']);
+
+    Route::post('/admin/edit/{id}', [AdminController::class, 'edit']);
+
+    Route::get('/admin/tambah', [AdminController::class, 'create']);
+    Route::post('/admin/store', [AdminController::class, 'store']);
+
+
 });
 require __DIR__.'/auth.php';
 
@@ -47,15 +70,6 @@ Route::get('/', function(){
     return view('index');
 });
 
-Route::get('/gi',[TopUpController::class,'gi_topup']);
-
-Route::get('/hsr',[TopUpController::class,'hsr_topup']);
-
-Route::get('/ml',[TopUpController::class,'ml_topup']);
-
-Route::get('/coc',[TopUpController::class,'coc_topup']);
-
-Route::post('/store',[TopUpController::class,'store']);
 
 
 // Route::get('/topup/{game_slug}', [GamesController::class, 'topup'])->name('topup.game');

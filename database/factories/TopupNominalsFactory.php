@@ -18,10 +18,9 @@ class TopupNominalsFactory extends Factory
     public function definition(): array
     {
         return [
-            'nominal' => $this->faker->numberBetween( 10, 100),
+            'nominal' => $this->faker->numberBetween( 10000,1500000),
             'nama_nominal' => $this->faker->text(10),
             'game_id' => $this->faker->numberBetween(1, 4),
-            // Other fields and their respective Faker methods
         ];
     }
 }
