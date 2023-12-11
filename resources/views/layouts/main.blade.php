@@ -60,21 +60,23 @@
 
     <script type="text/javascript">
       function validateAndSubmit() {
-        var form = document.getElementById('topupForm');
-        var username = form.elements['username'].value;
-        var uid = form.elements['uid'].value;
-        var server = form.elements['server'].value;
+    var form = document.getElementById('topupForm');
+    var username = form.elements['username'].value;
+    var uid = form.elements['uid'].value;
+    var server = form.elements['server'].value;
 
-        if (username.trim() === '' || uid.trim() === '' || server.trim() === '') {
-          // Show an error message if any of the required fields is empty
-          Swal.fire("Error", "Kolom tidak boleh kosong!", "error");
-        } else {
-          // Proceed with the SweetAlert
-          JSalert();
-        }
-      }
+    if (username.trim() === '' || uid.trim() === '' || server.trim() === '') {
+        // Show an error message if any of the required fields is empty
+        Swal.fire("Error", "Kolom tidak boleh kosong!", "error");
+        return false; // Prevent form submission
+    } else {
+        // Proceed with the SweetAlert
+        JSalert();
+        return true; // Allow form submission
+    }
+}
 
-      function JSalert() {
+function JSalert() {
     Swal.fire({
         title: "Apakah Anda yakin mau Topup?",
         icon: "info",
@@ -92,6 +94,7 @@
             // The user clicked "Batal," so you can choose to do nothing or show a message.
         }
     });
+
 }
     </script>
 
