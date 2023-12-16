@@ -31,8 +31,8 @@
                                       @if ($user->image)
                                             <img src="{{ asset('storage/'.$user->image) }}" alt="" style="width:200px;" class="mt-2">
                                       @else
-                                          <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fw7.pngwing.com%2Fpngs%2F178%2F595%2Fpng-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png&tbnid=HRpXPjhOPcdOrM&vet=12ahUKEwi2-4D6nYeDAxUAcmwGHaJiCa0QMygNegQIARBi..i&imgrefurl=https%3A%2F%2Fwww.pngwing.com%2Fen%2Fsearch%3Fq%3Duser&docid=8Qj_3LCalWAqLM&w=360&h=361&q=user&ved=2ahUKEwi2-4D6nYeDAxUAcmwGHaJiCa0QMygNegQIARBi"
-                                          alt="Avatar" class="img-fluid my-5" style="width: 200px;" class="mt-2">
+                                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                      alt="Avatar" class="img-fluid my-5" style="width: 200px; height:200px;" />
                                       @endif                                        
                                     </center>
                                     <h5>{{ $user->full_name }}</h5>

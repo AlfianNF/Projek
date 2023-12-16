@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TopupNominals;
+use App\Charts\JenisKelaminChart;
 use App\Http\Controllers\Controller;
+use App\Charts\TopupChart;
 
 class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request,JenisKelaminChart $jenisKelaminChart,TopupChart $topupChart)
     {
+        $data['jenisKelaminChart'] = $jenisKelaminChart->build();
+        $game['topupChart'] = $topupChart->build();
         $nominals = TopupNominals::paginate(6);
 
-        return view('admin.index',compact('nominals'));
+        return view('admin.index',compact('nominals', 'data','game'));
     }
 
     /**
