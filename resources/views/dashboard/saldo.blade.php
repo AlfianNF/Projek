@@ -29,7 +29,10 @@
                             </tbody>
                             @empty
                             <tr>
-                                <td colspan="3"><h5>Belum ada rincian Topup</h5></td>
+                                <td colspan=><h5>Belum ada rincian Topup</h5></td>
+                                <td colspan=></td>
+                                <td colspan=></td>
+                                <td colspan=></td>
                             </tr>
                         @endforelse
                     </table>

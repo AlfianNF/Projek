@@ -9,7 +9,7 @@ class Saldos extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['saldo','user_id'];
+    protected $fillable = ['saldo','user_id','username','email','payment'];
 
 
     public function user()

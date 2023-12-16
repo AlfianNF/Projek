@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('saldos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('username'); // Assuming username is a string, adjust as needed
+            $table->string('email');
             $table->integer('saldo'); // Adjust the data type and precision as needed
+            $table->string('payment');
             $table->timestamps();
 
             // Define foreign key constraint
